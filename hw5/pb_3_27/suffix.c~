@@ -1,0 +1,39 @@
+#include <assert.h>
+#include <stdio.h>
+
+int suffix(char *str, char *suf) {
+  if(!str || !suf) return 0;
+  int i;
+  for(i = 0; str[i] != '\0'; i++);
+  assert(str[i] == '\0');
+  char rts[i];
+  for(i--; i >= 0; i--) {
+    *rts = str[i];
+    rts++;
+  }
+  int j;
+  for(j = 0; suf[j] != '\0'; j++);
+  assert(suf[j] == '\0');
+  char fus[j];
+  for(j--; j >= 0; j--) {
+    *fus = suf[j];
+    fus++;
+  }
+  while(*fus)
+    if(*fus++ != *rts++)
+      return 0;
+  return 1;
+}
+
+int main(void) {
+  char input[9] = "Malarkey"; char suffix[4] = "key";
+  int err = suffix(input,suffix);
+  assert(err);
+  char notsuffix[4] = "ish";
+  err = suffix(input,notsuffix);
+  assert(!err);
+  err = suffix(NULL,suffix);
+  assert(!err);
+  err = suffix(input,NULL);
+  assert(!err);
+}

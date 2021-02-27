@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <assert.h>
+
+int xvowel(char const *in, char *out) {
+  if(!in || !out) return -1;
+  int i = 0; int j = 0;
+  for(i // get structure from HW last week
+      
+	
+}
+
+int main(void) {
+
+}

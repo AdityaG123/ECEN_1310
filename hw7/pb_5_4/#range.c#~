@@ -1,0 +1,6 @@
+#include <stdio.h>
+#include <string.h>
+
+int main(int argc, char * argr[]){
+  int min; int max; int range;
+  if (scanf("%d", &min) != 1) printf("Input values must be nonempty and integers.")

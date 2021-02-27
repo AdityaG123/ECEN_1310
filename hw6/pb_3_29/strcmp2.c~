@@ -1,0 +1,12 @@
+#include <stdio.h>
+#include <assert.h>
+
+int strcmp2(char *str1, char *str2) {
+  if(!str1 || !str2) return 0;
+  // keep going until BOTH are terminated (equal length, equal values)
+
+}
+
+int main(void) {
+
+}

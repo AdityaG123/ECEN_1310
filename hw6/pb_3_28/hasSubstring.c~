@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <assert.h>
+
+int hasSubstring(char *str, char *substr) {
+  if(!str || !substr) return 0;
+  int i, j;
+  if(!substr[0]) return 1;
+  for(i=0; str[i]; i++) {
+    for(j = 0; ;j++) {
+      if(!substr[j]) return 1;
+      if(str[i+j] != substr[j]) break;
+    }
+    return 0;
+  }
+}
+
+int main(void) {
+  char a[] = "He"; char b[] = "H";
+  int err = hasSubstring(a,b);
+  assert(err == 1);
+}

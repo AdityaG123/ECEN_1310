@@ -1,0 +1,11 @@
+#include <stdio.h>
+
+int main(int m, int n, int ret) {
+  ret = scanf("%d %d\n",&m,&n);
+  for(m; m < n; m++) {
+    m = m*(m+1);
+  }
+  m = m * n;
+  if(ret == 2) printf("%d\n",m);
+  return 0;
+}
