@@ -1,0 +1,13 @@
+#ifndef BLACKJACK_H_
+#define BLACKJACK_H_
+
+typedef struct _card Card;
+
+Card *createDeck(); //Creates an array of 52 cards on heap
+void shuffleDeck(Card *deck); //Shuffles the deck into a random order
+void printCard(Card c); //Does exactly what it says
+Card pointValue(Card c);//Aces=1, Face cards = 10, all else is number
+void clearHand(Card * x); //Makes a hand of 11 cards all zero
+int handSum(Card * x,int cnt); //Sums the hand of a player
+
+#endif

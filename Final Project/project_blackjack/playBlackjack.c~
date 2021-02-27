@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include "blackjack.h"
+
+struct _card{
+  int suit;
+  int number;
+};
+
+typedef struct _card Card;
+
+int main(){
+  Card * deck;
+  Card p1,p2,d1,d2,hit;
+  int psum,dsum,cnt=5,hand = 3;
+  Card pHand[11],dHand[11];
+  clearHand(pHand);
+  clearHand(dHand);
+  deck = createDeck();
+  shuffleDeck(deck);
+  p1 = deck[1];
+  p2 = deck[2];
+  d1 = deck[3];
+  d2 = deck[4];
+  printf("Dealer's Cards:\n");
+  printCard(d1);
+  printf("Second Card Hidden\n\n");
+  printf("-----------------------------------\n\n");
+  printf("Your Cards:\n");
+  printCard(p1);
+  printCard(p2);
+  p1 = pointValue(p1); pHand[1]=p1;
+  p2 = pointValue(p2); pHand[2]=p2;
+  d1 = pointValue(d1); dHand[1]=d1;
+  d2 = pointValue(d2); dHand[2]=d2;
+  psum = handSum(pHand);
+  dsum = handSum(dHand);
+  printf("Your sum is: %d\n\n",psum);
+  printf("-----------------------------------\n\n");
+  while(1){
+    if(psum>=21) break;
+    printf("Hit or Stand\n");
+    char option[6];
+    fgets(option,sizeof(option),stdin);
+      if(option[3]=='\n') option[3]='\0';
+      if(!strcmp(option,"Stand")||!strcmp(option,"stand"))break;
+      if(!strcmp(option,"Hit")||!strcmp(option,"hit")){
+      hit = deck[cnt];
+      printCard(hit);
+      hit = pointValue(hit);
+      pHand[hand] = hit;
+      psum = handSum(pHand);
+      printf("Your new sum is: %d\n",psum);
+      cnt++;hand++;
+    }
+      else {
+      printf("please type 'Hit' to Hit or 'Stand' to Stand,Dummy\n");
+    }
+  }
+  printf("-----------------------------------\n\n");
+  printf("Dealer's Second Card was ");
+  printCard(d2);
+  printf("Dealer's Sum: %d\n",dsum);
+  hand = 3;
+  while(dsum<17){
+    if(psum>21) break;
+    hit = deck[cnt];
+    printf("Dealer drew a ");
+    printCard(hit);
+    pointValue(hit);
+    dHand[hand] = hit;
+    dsum = handSum(dHand);
+    printf("Dealer's new sum is: %d\n",dsum);
+    cnt++; hand++;
+  }
+  printf("-----------------------------------\n\n");
+  if(psum>21) printf("YOU ARE A BUSTER\n");
+  else if(dsum>21) printf("YOU WON\n");
+  else if(dsum>psum) printf("YOU LOST\n");
+  else if(dsum==psum) printf("DRAW\n");
+  else printf("YOU WON\n");
+  free(deck);
+  printf("-----------------------------------\n");
+  printf("Game Over\n");
+   return 0;
+}
