@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <assert.h>
+
+int multof3(int m) {
+   if (m % 3  == 0)
+    return 1;
+  else
+    return 0;
+
+}
+
+int main(void) {
+  int rv = multof3(21);
+  assert(rv == 1);
+  rv = multof3(40);
+  assert(rv == 0);
+  rv = multof3(0);
+  assert(rv == 1);
+  rv = multof3(-69);
+  assert(rv == 1);
+  rv = multof3(-200);
+  assert(rv == 0);
+  printf("All Clear \n");
+  return 0;
+}
+  

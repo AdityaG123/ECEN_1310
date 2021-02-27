@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <assert.h>
+
+int printDec(int n){
+  if (n <= 0)
+    return -1;
+   _printDec(n);
+   return 0;
+}
+
+int _printDec(int n){
+  if (n == 0)
+    return 0;
+  int r = _printDec(n/10);
+  int p = r%10;
+  printf("%d\n",p);
+  return r;
+}
+  
+int main(void){
+  int err = printDec(98);
+  assert(err == 0);
+}

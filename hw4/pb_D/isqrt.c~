@@ -1,0 +1,6 @@
+#include <stdio.h>
+
+int isqrt(int n, int *isr){
+  if(!isr || n < 0)
+    return -1;
+  
